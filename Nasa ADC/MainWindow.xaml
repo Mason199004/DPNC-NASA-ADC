@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Label Name="TestLabel" Content="Label" HorizontalAlignment="Left" Margin="204,75,0,0" VerticalAlignment="Top" Height="132" Width="156"/>
-        <Button Click="Button_Click" Content="Start" HorizontalAlignment="Left" Margin="495,88,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="pos1c" Content="Label" HorizontalAlignment="Left" Margin="41,27,0,0" VerticalAlignment="Top" Height="33" Width="700"/>
+        <Label x:Name="pos2c" Content="Label" HorizontalAlignment="Left" Margin="41,60,0,0" VerticalAlignment="Top" Width="700"/>
+        <Label x:Name="pos3c" Content="Label" HorizontalAlignment="Left" Margin="41,91,0,0" VerticalAlignment="Top" Height="32" Width="700"/>
+        <Label x:Name="quat1c" Content="Label" HorizontalAlignment="Left" Margin="41,118,0,0" VerticalAlignment="Top" Height="27" Width="700"/>
+        <Label x:Name="quat2c" Content="Label" HorizontalAlignment="Left" Margin="41,145,0,0" VerticalAlignment="Top" Height="25" Width="700"/>
+        <Label x:Name="quat3c" Content="Label" HorizontalAlignment="Left" Margin="41,175,0,0" VerticalAlignment="Top" Height="28" Width="700"/>
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -35,9 +36,18 @@ namespace Nasa_ADC
         public MainWindow()
         {
             InitializeComponent();
-            
-            
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += Worker_DoWork;
+            worker.RunWorkerAsync();
         }
+
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            SReceive();
+            
+
+        }
+
         public async Task SReceive()
         {
             UdpClient client = new UdpClient();
@@ -58,11 +68,24 @@ namespace Nasa_ADC
             while (true)
             {
                 Byte[] data = client.Receive(ref localEp);
+                Dispatcher.Invoke((Action)(() =>
+                {
+                    pos1c.InvalidateVisual();
+                    pos1c.Content = "Pos1 =" + pos1[0] + "," + pos1[1] + "," + pos1[2];
+                    pos2c.InvalidateVisual();
+                    pos2c.Content = "Pos2 =" + pos2[0] + "," + pos2[1] + "," + pos2[2];
+                    pos3c.InvalidateVisual();
+                    pos3c.Content = "Pos3 =" + pos3[0] + "," + pos3[1] + "," + pos3[2];
+                    quat1c.InvalidateVisual();
+                    quat1c.Content = "Quat1=" + quat1[0] + "," + quat1[1] + "," + quat1[2] + "," + quat1[3];
+                    quat2c.InvalidateVisual();
+                    quat2c.Content = "Quat2=" + quat2[0] + "," + quat2[1] + "," + quat2[2] + "," + quat2[3];
+                    quat3c.InvalidateVisual();
+                    quat3c.Content = "Quat3=" + quat3[0] + "," + quat3[1] + "," + quat3[2] + "," + quat3[3];
+                }));
+
                 
-                string strData = Encoding.ASCII.GetString(data);
-                
-                TestLabel.Content = strData;
-                setBuffer(data);
+                await setBuffer(data);
             }
         }
         public static void print_payload()
@@ -74,6 +97,7 @@ namespace Nasa_ADC
             System.Diagnostics.Debug.WriteLine("Quat2=" + quat2[0] + "," + quat2[1] + "," + quat2[2] + "," + quat2[3]);
             System.Diagnostics.Debug.WriteLine("Quat3=" + quat3[0] + "," + quat3[1] + "," + quat3[2] + "," + quat3[3]);
             System.Diagnostics.Debug.WriteLine("Eng_Flag=" + engine_flag + ", reservered=" + reserved);
+            
         }
 
         // Sets all fields to 0
@@ -85,7 +109,7 @@ namespace Nasa_ADC
         }
 
         // sets theRawBuffer[] to have same value as the specified newBuffer
-        public static void setBuffer(byte[] newBuffer)
+        public async Task setBuffer(byte[] newBuffer)
         {
             int cpySize = Math.Min(theRawBuffer.Length, newBuffer.Length);
             Array.Copy(newBuffer, 0, theRawBuffer, 0, cpySize);
