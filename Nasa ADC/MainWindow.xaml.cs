@@ -107,15 +107,26 @@ namespace Nasa_ADC
         {
             byte[] bytes = new byte[8];  // One doubles worth of data
             Array.Copy(theRawBuffer, offset, bytes, 0, 8);
-            bytes = reversebuffer(bytes);
+            //bytes = reversebuffer(bytes);
             MemoryStream stream = new MemoryStream();
+            double value = BitConverter.ToDouble(bytes, 0);
+            /*double ret;
             using (BinaryWriter writer = new BinaryWriter(stream))
             {
-                writer.Write(bytes);
+                foreach (byte b in bytes)
+                {
+                    writer.Write(b);
+                }
                 
+                using (BinaryReader binReader = new BinaryReader(writer.BaseStream))
+
+                {
+                    ret = binReader.ReadDouble();
+                }
+
             }
-            
-            return (Convert.ToDouble(stream));
+            */
+            return (value);
         }
 
         // Casts 4 bytes of theRawBuffer (starting at offset) as an int (in LittleEndian form), and returns it //
@@ -123,15 +134,23 @@ namespace Nasa_ADC
         {
             byte[] bytes = new byte[4];  // One Ints worth of data
             Array.Copy(theRawBuffer, offset, bytes, 0, 4);
-            bytes = reversebuffer(bytes);
+            //bytes = reversebuffer(bytes);
             MemoryStream stream = new MemoryStream();
+            int ret;
+            int value = BitConverter.ToInt32(bytes, 0);
+            /*
             using (BinaryWriter writer = new BinaryWriter(stream))
             {
                 writer.Write(bytes);
-                
+                using (BinaryReader binReader = new BinaryReader(writer.BaseStream))
+
+                {
+                    ret = binReader.ReadInt32();
+                }
+
             }
-            
-            return (Convert.ToInt32(stream));
+            */
+            return (value);
         }
 
         // Sets all the parameters to the values that they have in theRawBuffer buffer
@@ -146,6 +165,7 @@ namespace Nasa_ADC
             for (int i = 0; i < 4; i++, offset += 8) { quat3[i] = extractDouble(offset); }
             engine_flag = extractInt(offset); offset += 4;
             reserved = extractInt(offset); offset += 4;
+            print_payload();
         }
 
         // Place specified value into "offset" location in theRawBuffer. (as 8-bytes in LittleEndian form) //
