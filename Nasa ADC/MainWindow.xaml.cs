@@ -189,7 +189,7 @@ namespace Nasa_ADC
             for (int i = 0; i < 4; i++, offset += 8) { quat3[i] = extractDouble(offset); }
             engine_flag = extractInt(offset); offset += 4;
             reserved = extractInt(offset); offset += 4;
-            print_payload();
+            //print_payload();
         }
 
         // Place specified value into "offset" location in theRawBuffer. (as 8-bytes in LittleEndian form) //
