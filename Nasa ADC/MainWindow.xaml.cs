@@ -24,6 +24,9 @@ namespace Nasa_ADC
     /// </summary>
     public partial class MainWindow : Window
     {
+        public double pitch = 0;
+        public double yaw = 0;
+        public double roll = 0;
         static public double[] pos1 = new double[3];
         static public double[] pos3 = new double[3];
         static public double[] pos2 = new double[3];
@@ -46,6 +49,54 @@ namespace Nasa_ADC
             SReceive();
             
 
+        }
+
+        /*
+        struct Quanternion
+        {
+
+            double w, x, y, z;
+
+        }
+        */
+
+        public Tuple<double, double, double> GetEulerAngles(double[] q)
+        {
+            double w2 = q[0] * q[0];
+            double x2 = q[1] * q[1];
+            double y2 = q[2] * q[2];
+            double z2 = q[3] * q[3];
+            double unitLength = w2 + x2 + y2 + z2;    // Normalised == 1, otherwise correction divisor.
+            double abcd = q[0] * q[1] + q[2] * q[3];
+            double eps = 1e-7;    // TODO: pick from your math lib instead of hardcoding. EPS?
+            double pi = Math.PI;   // TODO: pick from your math lib instead of hardcoding. Done
+            if (abcd > (0.5 - eps) * unitLength)
+            {
+
+                yaw = 2 * Math.Atan2(q[2], q[2]);
+                pitch = pi;
+                roll = 0;
+
+                return Tuple.Create(yaw, pitch, roll);
+            }
+            else if (abcd < (-0.5 + eps) * unitLength)
+            {
+                yaw = -2 * Math.Atan2(q[2], q[0]);
+                pitch = -pi;
+                roll = 0;
+
+                return Tuple.Create(yaw, pitch, roll);
+            }
+            else
+            {
+                double adbc = q[0] * q[3] - q[1] * q[2];
+                double acbd = q[0] * q[2] - q[1] * q[3];
+                yaw = Math.Atan2(2 * adbc, 1 - 2 * (z2 + x2));
+                pitch = Math.Asin(2 * abcd / unitLength);
+                roll = Math.Atan2(2 * acbd, 1 - 2 * (y2 + x2));
+
+                return Tuple.Create(yaw, pitch, roll);
+            }
         }
 
         public async Task SReceive()
@@ -82,6 +133,12 @@ namespace Nasa_ADC
                     quat2c.Content = "Quat2=" + quat2[0] + "," + quat2[1] + "," + quat2[2] + "," + quat2[3];
                     quat3c.InvalidateVisual();
                     quat3c.Content = "Quat3=" + quat3[0] + "," + quat3[1] + "," + quat3[2] + "," + quat3[3];
+                    euler1.InvalidateVisual();
+                    euler1.Content = "LAS = " + "Yaw: " + GetEulerAngles(quat1).Item1 + " Pitch: " + GetEulerAngles(quat1).Item2 + " Roll: " + GetEulerAngles(quat1).Item3;
+                    euler2.InvalidateVisual();
+                    euler2.Content = "CM = " + "Yaw: " + GetEulerAngles(quat2).Item1 + " Pitch: " + GetEulerAngles(quat2).Item2 + " Roll: " + GetEulerAngles(quat2).Item3;
+                    euler3.InvalidateVisual();
+                    euler3.Content = "Launch Rocket = " + "Yaw: " + GetEulerAngles(quat3).Item1 + " Pitch: " + GetEulerAngles(quat3).Item2 + " Roll: " + GetEulerAngles(quat3).Item3;
                 }));
 
                 
