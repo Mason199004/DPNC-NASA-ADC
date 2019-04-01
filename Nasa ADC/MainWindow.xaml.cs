@@ -47,7 +47,7 @@ namespace Nasa_ADC
             UIWork.RunWorkerAsync();
         }
 
-        private void UIWork_DoWork(object sender, DoWorkEventArgs e)
+        private async void UIWork_DoWork(object sender, DoWorkEventArgs e)
         {
             while (true)
             {
@@ -74,6 +74,7 @@ namespace Nasa_ADC
 
                     engflag.Content = "Engine Flag: " + engine_flag;
                 }));
+                await Task.Delay(1);
             }
         }
 
