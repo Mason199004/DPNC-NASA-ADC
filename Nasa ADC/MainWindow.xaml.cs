@@ -39,26 +39,52 @@ namespace Nasa_ADC
         public MainWindow()
         {
             InitializeComponent();
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += Worker_DoWork;
-            worker.RunWorkerAsync();
+            BackgroundWorker RecvWork = new BackgroundWorker();
+            RecvWork.DoWork += RecvWork_DoWork;
+            RecvWork.RunWorkerAsync();
+            BackgroundWorker UIWork = new BackgroundWorker();
+            UIWork.DoWork += UIWork_DoWork;
+            UIWork.RunWorkerAsync();
         }
 
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void UIWork_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                Dispatcher.Invoke((Action)(() =>
+                {
+
+                    pos1c.Content = "Pos1 =" + pos1[0] + "," + pos1[1] + "," + pos1[2];
+
+                    pos2c.Content = "Pos2 =" + pos2[0] + "," + pos2[1] + "," + pos2[2];
+
+                    pos3c.Content = "Pos3 =" + pos3[0] + "," + pos3[1] + "," + pos3[2];
+
+                    quat1c.Content = "Quat1=" + quat1[0] + "," + quat1[1] + "," + quat1[2] + "," + quat1[3];
+
+                    quat2c.Content = "Quat2=" + quat2[0] + "," + quat2[1] + "," + quat2[2] + "," + quat2[3];
+
+                    quat3c.Content = "Quat3=" + quat3[0] + "," + quat3[1] + "," + quat3[2] + "," + quat3[3];
+
+                    euler1.Content = "LAS = " + "Yaw: " + GetEulerAngles(quat1).Item1 + " Pitch: " + GetEulerAngles(quat1).Item2 + " Roll: " + GetEulerAngles(quat1).Item3;
+
+                    euler2.Content = "CM = " + "Yaw: " + GetEulerAngles(quat2).Item1 + " Pitch: " + GetEulerAngles(quat2).Item2 + " Roll: " + GetEulerAngles(quat2).Item3;
+
+                    euler3.Content = "Launch Rocket = " + "Yaw: " + GetEulerAngles(quat3).Item1 + " Pitch: " + GetEulerAngles(quat3).Item2 + " Roll: " + GetEulerAngles(quat3).Item3;
+
+                    engflag.Content = "Engine Flag: " + engine_flag;
+                }));
+            }
+        }
+
+        private void RecvWork_DoWork(object sender, DoWorkEventArgs e)
         {
             SReceive();
             
 
         }
 
-        /*
-        struct Quanternion
-        {
-
-            double w, x, y, z;
-
-        }
-        */
+        
 
         public Tuple<double, double, double> GetEulerAngles(double[] q)
         {
@@ -69,7 +95,7 @@ namespace Nasa_ADC
             double unitLength = w2 + x2 + y2 + z2;    // Normalised == 1, otherwise correction divisor.
             double abcd = q[0] * q[1] + q[2] * q[3];
             double eps = 1e-7;    // TODO: pick from your math lib instead of hardcoding. EPS?
-            double pi = Math.PI;   // TODO: pick from your math lib instead of hardcoding. Done
+            double pi = Math.PI;   
             if (abcd > (0.5 - eps) * unitLength)
             {
 
@@ -119,33 +145,13 @@ namespace Nasa_ADC
             while (true)
             {
                 Byte[] data = client.Receive(ref localEp);
-                Dispatcher.Invoke((Action)(() =>
-                {
-                    pos1c.InvalidateVisual();
-                    pos1c.Content = "Pos1 =" + pos1[0] + "," + pos1[1] + "," + pos1[2];
-                    pos2c.InvalidateVisual();
-                    pos2c.Content = "Pos2 =" + pos2[0] + "," + pos2[1] + "," + pos2[2];
-                    pos3c.InvalidateVisual();
-                    pos3c.Content = "Pos3 =" + pos3[0] + "," + pos3[1] + "," + pos3[2];
-                    quat1c.InvalidateVisual();
-                    quat1c.Content = "Quat1=" + quat1[0] + "," + quat1[1] + "," + quat1[2] + "," + quat1[3];
-                    quat2c.InvalidateVisual();
-                    quat2c.Content = "Quat2=" + quat2[0] + "," + quat2[1] + "," + quat2[2] + "," + quat2[3];
-                    quat3c.InvalidateVisual();
-                    quat3c.Content = "Quat3=" + quat3[0] + "," + quat3[1] + "," + quat3[2] + "," + quat3[3];
-                    euler1.InvalidateVisual();
-                    euler1.Content = "LAS = " + "Yaw: " + GetEulerAngles(quat1).Item1 + " Pitch: " + GetEulerAngles(quat1).Item2 + " Roll: " + GetEulerAngles(quat1).Item3;
-                    euler2.InvalidateVisual();
-                    euler2.Content = "CM = " + "Yaw: " + GetEulerAngles(quat2).Item1 + " Pitch: " + GetEulerAngles(quat2).Item2 + " Roll: " + GetEulerAngles(quat2).Item3;
-                    euler3.InvalidateVisual();
-                    euler3.Content = "Launch Rocket = " + "Yaw: " + GetEulerAngles(quat3).Item1 + " Pitch: " + GetEulerAngles(quat3).Item2 + " Roll: " + GetEulerAngles(quat3).Item3;
-                }));
+                
 
                 
                 await setBuffer(data);
             }
         }
-        public static void print_payload()
+        public static void print_payload() // for debug purposes
         {
             System.Diagnostics.Debug.WriteLine("Pos1 =" + pos1[0] + "," + pos1[1] + "," + pos1[2]);
             System.Diagnostics.Debug.WriteLine("Pos2 =" + pos2[0] + "," + pos2[1] + "," + pos2[2]);
@@ -173,40 +179,17 @@ namespace Nasa_ADC
             unpackBuffer();
         }
 
-        // reverses the order of bytes in a byte[] (first becomes last, and vice versa)
-        public static byte[] reversebuffer(byte[] input)
-        {
-            byte[] rv = new byte[input.Length];
-            //System.out.println(input.length);
-            for (int i = 0, j = input.Length - 1; j >= 0; i++, j--)
-            { rv[i] = input[j];  /*System.out.println("in["+i+"]="+rv[i]);}*/ }
-            return rv;
-        }
+        
 
         // Casts 8 bytes of theRawBuffer (starting at offset) as a double (in LittleEndian form), and returns it //
         public static double extractDouble(int offset)
         {
             byte[] bytes = new byte[8];  // One doubles worth of data
             Array.Copy(theRawBuffer, offset, bytes, 0, 8);
-            //bytes = reversebuffer(bytes);
-            MemoryStream stream = new MemoryStream();
+            
+           
             double value = BitConverter.ToDouble(bytes, 0);
-            /*double ret;
-            using (BinaryWriter writer = new BinaryWriter(stream))
-            {
-                foreach (byte b in bytes)
-                {
-                    writer.Write(b);
-                }
-                
-                using (BinaryReader binReader = new BinaryReader(writer.BaseStream))
-
-                {
-                    ret = binReader.ReadDouble();
-                }
-
-            }
-            */
+            
             return (value);
         }
 
@@ -215,22 +198,11 @@ namespace Nasa_ADC
         {
             byte[] bytes = new byte[4];  // One Ints worth of data
             Array.Copy(theRawBuffer, offset, bytes, 0, 4);
-            //bytes = reversebuffer(bytes);
-            MemoryStream stream = new MemoryStream();
-            int ret;
+            
+            
+            
             int value = BitConverter.ToInt32(bytes, 0);
-            /*
-            using (BinaryWriter writer = new BinaryWriter(stream))
-            {
-                writer.Write(bytes);
-                using (BinaryReader binReader = new BinaryReader(writer.BaseStream))
-
-                {
-                    ret = binReader.ReadInt32();
-                }
-
-            }
-            */
+            
             return (value);
         }
 
@@ -249,59 +221,7 @@ namespace Nasa_ADC
             //print_payload();
         }
 
-        // Place specified value into "offset" location in theRawBuffer. (as 8-bytes in LittleEndian form) //
-        public static void packDouble(int offset, double val)
-        {
-            
-            
-            byte[] bytes = new byte[8];  // One doubles worth of data
-            
-            MemoryStream stream = new MemoryStream();
-            using (BinaryWriter writer = new BinaryWriter(stream))
-            {
-                writer.Write(bytes);
-                writer.Write(val);
-            }
-            bytes = stream.ToArray();
-            bytes = reversebuffer(bytes);  // swap to little Endian (JAVA is BE)
-            Array.Copy(bytes, 0, theRawBuffer, offset, 8);
-        }
-
-        // Place specified value into "offset" location in theRawBuffer. (as 8-bytes in LittleEndian form) //
-        public static void packInt(int offset, int val)
-        {
-            byte[] bytes = new byte[4];  // One doubles worth of data
-            
-            MemoryStream stream = new MemoryStream();
-            using (BinaryWriter writer = new BinaryWriter(stream))
-            {
-                writer.Write(bytes);
-                writer.Write(val);
-            }
-            bytes = stream.ToArray();
-            bytes = reversebuffer(bytes);  // swap to little Endian (JAVA is BE)
-            Array.Copy(bytes, 0, theRawBuffer, offset, 4);
-        }
-
-        // Sets the theRawBufffer to have values associated with all the current values of the parameters
-        public byte[] packBuffer()
-        {
-            int offset = 0;
-            for (int i = 0; i < 3; i++, offset += 8) { packDouble(offset, pos1[i]); }
-            for (int i = 0; i < 3; i++, offset += 8) { packDouble(offset, pos2[i]); }
-            for (int i = 0; i < 3; i++, offset += 8) { packDouble(offset, pos3[i]); }
-            for (int i = 0; i < 4; i++, offset += 8) { packDouble(offset, quat1[i]); }
-            for (int i = 0; i < 4; i++, offset += 8) { packDouble(offset, quat2[i]); }
-            for (int i = 0; i < 4; i++, offset += 8) { packDouble(offset, quat3[i]); }
-            packInt(offset, engine_flag); offset += 4;
-            packInt(offset, reserved); offset += 4;
-            return theRawBuffer;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-           SReceive();
-        }
+        
     }
     
 }

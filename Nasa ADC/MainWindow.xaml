@@ -16,5 +16,7 @@
         <Label x:Name="euler1" Content="Label" HorizontalAlignment="Left" Margin="41, 200, 0, 0" VerticalAlignment="Top" Height="30" Width="700"/>
         <Label x:Name="euler2" Content="Label" HorizontalAlignment="Left" Margin="41, 225, 0, 0" VerticalAlignment="Top" Height="30" Width="700"/>
         <Label x:Name="euler3" Content="Label" HorizontalAlignment="Left" Margin="41, 250, 0, 0" VerticalAlignment="Top" Height="30" Width="700"/>
+        <Label x:Name="Rot" Content="Normalized Rotation:" HorizontalAlignment="Left" Margin="41,174,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="engflag" Content="Label" HorizontalAlignment="Left" Margin="41,309,0,0" VerticalAlignment="Top" Height="30" Width="700"/>
     </Grid>
 </Window>
