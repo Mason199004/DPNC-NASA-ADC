@@ -16,6 +16,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Path = System.Windows.Shapes.Path;
+using InteractiveDataDisplay;
+using System.Reactive.Linq;
 
 namespace Nasa_ADC
 {
@@ -49,6 +52,10 @@ namespace Nasa_ADC
 
         private async void UIWork_DoWork(object sender, DoWorkEventArgs e)
         {
+            Dispatcher.Invoke((Action)(() =>
+            {
+                
+            }));
             while (true)
             {
                 Dispatcher.Invoke((Action)(() =>
