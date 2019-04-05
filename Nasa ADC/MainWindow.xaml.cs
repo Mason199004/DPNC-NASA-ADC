@@ -222,7 +222,6 @@ namespace Nasa_ADC
             //print_payload();
         }
 
-        
     }
     
 }
