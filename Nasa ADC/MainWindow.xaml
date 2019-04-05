@@ -21,13 +21,13 @@
 
         <Label x:Name="Rot" Content="Normalized Rotation:" HorizontalAlignment="Left" Margin="240,174,0,0" VerticalAlignment="Top"/>
 
-        <!-- Engie Flag(Which Engine is firing) -->
+        <!-- Engine Flag(Which Engine is firing) -->
         <Label x:Name="engflag" Content="Label" HorizontalAlignment="Left" Margin="240,280,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
 
         <!-- Left Side of the UI -->
 
         <Button x:Name="alti_view" Content="Altimeter" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Width="210" Height="104.75" />
-        <Button x:Name="rotation_view" Content="Pitch And Yaw" TextElement.FontSize="30px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 104.75" Width="210" Height="104.75"/>
+        <Button x:Name="rotation_view" Content="Rotation" TextElement.FontSize="30px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 104.75" Width="210" Height="104.75" FontSize="40"/>
         <Button x:Name="pos_view" Content="Position" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0, 105" Width="210" Height="104.75"/>
         <Button x:Name="staging_view" Content="Staging" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="210" Height="104.75"/>
 
