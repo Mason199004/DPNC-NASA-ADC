@@ -24,18 +24,29 @@ namespace Nasa_ADC
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool altimeter_view = false;
+        public bool position_view = false;
+        public bool rot_view = false;
+        public bool stage_view = false;
+
         public double pitch = 0;
         public double yaw = 0;
         public double roll = 0;
+
         static public double[] pos1 = new double[3];
         static public double[] pos3 = new double[3];
         static public double[] pos2 = new double[3];
+
         static public double[] quat1 = new double[4];
         static public double[] quat2 = new double[4];
         static public double[] quat3 = new double[4];
+
         static public int engine_flag;
+
         static public int reserved;
         public static byte[] theRawBuffer = new byte[22 * 8]; // 22 parameters, 8 bytes eac
+
+        // Constructer
         public MainWindow()
         {
             InitializeComponent();
@@ -47,13 +58,93 @@ namespace Nasa_ADC
             UIWork.RunWorkerAsync();
         }
 
+        // Method that displays data in UI
         private async void UIWork_DoWork(object sender, DoWorkEventArgs e)
         {
+            // "Game Loop"
             while (true)
             {
                 Dispatcher.Invoke((Action)(() =>
                 {
+                    if (alti_view.IsPressed)
+                    {
+                        altimeter_view = true;
+                        position_view = false;
 
+                        rot_view = false;
+                        euler1.Content = "";
+                        euler2.Content = "";
+                        euler3.Content = "";
+
+                        stage_view = false;
+                        engflag.Content = "";
+                    } else if (pos_view.IsPressed)
+                    {
+                        altimeter_view = false;
+                        position_view = true;
+
+                        rot_view = false;
+                        euler1.Content = "";
+                        euler2.Content = "";
+                        euler3.Content = "";
+
+                        stage_view = false;
+                        engflag.Content = "";
+                    } else if (rotation_view.IsPressed)
+                    {
+                        altimeter_view = false;
+                        position_view = false;
+                        pos1c.Content = "";
+                        pos2c.Content = "";
+                        pos3c.Content = "";
+
+                        rot_view = true;
+
+                        stage_view = false;
+                        engflag.Content = "";
+                    } else if (staging_view.IsPressed)
+                    {
+                        altimeter_view = false;
+                        position_view = false;
+                        pos1c.Content = "";
+                        pos2c.Content = "";
+                        pos3c.Content = "";
+
+                        rot_view = false;
+                        euler1.Content = "";
+                        euler2.Content = "";
+                        euler3.Content = "";
+
+                        stage_view = true;
+                    }
+
+                    if (altimeter_view)
+                    {                    
+                        pos1c.Content = "Altitude of LAS = " + pos1[0];
+
+                        pos2c.Content = "Altitude of Command Module = " + pos2[0];
+
+                        pos3c.Content = "Altitude of Main Thruster = " + pos3[0];
+                    } else if (position_view)
+                    {
+                        pos1c.Content = "Position of LAS: Latitude = " + pos1[1] + " Longitude = " + pos1[2];
+
+                        pos2c.Content = "Position of LAS: Latitude = " + pos2[1] + " Longitude = " + pos2[2];
+
+                        pos3c.Content = "Position of LAS: Latitude = " + pos3[1] + " Longitude = " + pos3[2];
+                    } else if (rot_view)
+                    {
+                        euler1.Content = "LAS: Yaw = " + GetEulerAngles(quat1).Item1 + " Pitch = " + GetEulerAngles(quat1).Item2 + " Roll = " + GetEulerAngles(quat1).Item3;
+
+                        euler2.Content = "Command Module: Yaw = " + GetEulerAngles(quat2).Item1 + " Pitch = " + GetEulerAngles(quat2).Item2 + " Roll = " + GetEulerAngles(quat2).Item3;
+
+                        euler1.Content = "Main Thruster: Yaw = " + GetEulerAngles(quat3).Item1 + " Pitch = " + GetEulerAngles(quat3).Item2 + " Roll = " + GetEulerAngles(quat3).Item3;
+                    } else if (stage_view)
+                    {
+                        engflag.Content = "Stage = " + engine_flag;
+                    }
+
+                    /*
                     pos1c.Content = "Pos1 =" + pos1[0] + "," + pos1[1] + "," + pos1[2];
 
                     pos2c.Content = "Pos2 =" + pos2[0] + "," + pos2[1] + "," + pos2[2];
@@ -73,6 +164,7 @@ namespace Nasa_ADC
                     euler3.Content = "Launch Rocket = " + "Yaw: " + GetEulerAngles(quat3).Item1 + " Pitch: " + GetEulerAngles(quat3).Item2 + " Roll: " + GetEulerAngles(quat3).Item3;
 
                     engflag.Content = "Engine Flag: " + engine_flag;
+                    */
                 }));
                 await Task.Delay(1);
             }
@@ -82,7 +174,6 @@ namespace Nasa_ADC
         {
             SReceive();
             
-
         }
 
         
@@ -95,7 +186,7 @@ namespace Nasa_ADC
             double z2 = q[3] * q[3];
             double unitLength = w2 + x2 + y2 + z2;    // Normalised == 1, otherwise correction divisor.
             double abcd = q[0] * q[1] + q[2] * q[3];
-            double eps = 1e-7;    // TODO: pick from your math lib instead of hardcoding. EPS?
+            double eps = 1e-7; // Epsilon
             double pi = Math.PI;   
             if (abcd > (0.5 - eps) * unitLength)
             {
@@ -126,6 +217,7 @@ namespace Nasa_ADC
             }
         }
 
+        // Extracts data from jar file through multicast
         public async Task SReceive()
         {
             UdpClient client = new UdpClient();
@@ -152,6 +244,7 @@ namespace Nasa_ADC
                 await setBuffer(data);
             }
         }
+
         public static void print_payload() // for debug purposes
         {
             System.Diagnostics.Debug.WriteLine("Pos1 =" + pos1[0] + "," + pos1[1] + "," + pos1[2]);
@@ -220,8 +313,7 @@ namespace Nasa_ADC
             engine_flag = extractInt(offset); offset += 4;
             reserved = extractInt(offset); offset += 4;
             //print_payload();
-        }
-
+        }        
     }
     
 }

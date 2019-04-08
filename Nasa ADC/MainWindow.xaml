@@ -5,29 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nasa_ADC"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize">
     <Grid>
-        <Label x:Name="pos1c" Content="Label" HorizontalAlignment="Left" Margin="240,25,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="pos2c" Content="Label" HorizontalAlignment="Left" Margin="240,50,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="pos3c" Content="Label" HorizontalAlignment="Left" Margin="240,75,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="pos1c" Content="" HorizontalAlignment="Left" Margin="240,25,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="pos2c" Content="" HorizontalAlignment="Left" Margin="240,50,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="pos3c" Content="" HorizontalAlignment="Left" Margin="240,75,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
 
-        <Label x:Name="quat1c" Content="Label" HorizontalAlignment="Left" Margin="240,100,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="quat2c" Content="Label" HorizontalAlignment="Left" Margin="240,125,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="quat3c" Content="Label" HorizontalAlignment="Left" Margin="240,150,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="quat1c" Content="" HorizontalAlignment="Left" Margin="240,100,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="quat2c" Content="" HorizontalAlignment="Left" Margin="240,125,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="quat3c" Content="" HorizontalAlignment="Left" Margin="240,150,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
 
-        <Label x:Name="euler1" Content="Label" HorizontalAlignment="Left" Margin="240, 200, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="euler2" Content="Label" HorizontalAlignment="Left" Margin="240, 225, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="euler3" Content="Label" HorizontalAlignment="Left" Margin="240, 250, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="euler1" Content="" HorizontalAlignment="Left" Margin="240, 200, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="euler2" Content="" HorizontalAlignment="Left" Margin="240, 225, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="euler3" Content="" HorizontalAlignment="Left" Margin="240, 250, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
 
-        <Label x:Name="Rot" Content="Normalized Rotation:" HorizontalAlignment="Left" Margin="240,174,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Rot" Content="" HorizontalAlignment="Left" Margin="240,174,0,0" VerticalAlignment="Top"/>
 
         <!-- Engie Flag(Which Engine is firing) -->
-        <Label x:Name="engflag" Content="Label" HorizontalAlignment="Left" Margin="240,280,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="engflag" Content="" HorizontalAlignment="Left" Margin="240,280,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
 
         <!-- Left Side of the UI -->
 
-        <Button x:Name="alti_view" Content="Altimeter" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Width="210" Height="104.75" />
-        <Button x:Name="rotation_view" Content="Pitch And Yaw" TextElement.FontSize="30px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 104.75" Width="210" Height="104.75"/>
+        <Button x:Name="alti_view" Content="Altimeter" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Width="210" Height="104.75"/>
+        <Button x:Name="rotation_view" Content="Rotation" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 104.75" Width="210" Height="104.75"/>
         <Button x:Name="pos_view" Content="Position" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0, 105" Width="210" Height="104.75"/>
         <Button x:Name="staging_view" Content="Staging" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="210" Height="104.75"/>
 
