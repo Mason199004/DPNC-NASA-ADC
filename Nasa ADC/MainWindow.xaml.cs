@@ -28,6 +28,7 @@ namespace Nasa_ADC
         public bool position_view = false;
         public bool rot_view = false;
         public bool stage_view = false;
+        public bool default_view = false;
 
         public double pitch = 0;
         public double yaw = 0;
@@ -116,6 +117,21 @@ namespace Nasa_ADC
                         euler3.Content = "";
 
                         stage_view = true;
+                    } else if (restore_view.IsPressed)
+                    {
+                        altimeter_view = false;
+                        position_view = false;
+                        pos1c.Content = "";
+                        pos2c.Content = "";
+                        pos3c.Content = "";
+
+                        rot_view = false;
+                        euler1.Content = "";
+                        euler2.Content = "";
+                        euler3.Content = "";
+
+                        stage_view = false;
+                        engflag.Content = "";
                     }
 
                     if (altimeter_view)
