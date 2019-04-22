@@ -19,11 +19,12 @@ using System.Windows.Shapes;
 
 namespace Nasa_ADC
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {				
         public bool altimeter_view = false;
         public bool position_view = false;
         public bool rot_view = false;
@@ -67,43 +68,57 @@ namespace Nasa_ADC
             {
                 Dispatcher.Invoke((Action)(() =>
                 {
-                    if (alti_view.IsPressed)
+                    if (alti_btn.IsPressed)
                     {
                         altimeter_view = true;
                         position_view = false;
 
-                        rot_view = false;
+						altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+						altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
+						altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
+
+						rot_view = false;
                         euler1.Content = "";
                         euler2.Content = "";
                         euler3.Content = "";
 
                         stage_view = false;
                         engflag.Content = "";
-                    } else if (pos_view.IsPressed)
+                    } else if (pos_btn.IsPressed)
                     {
                         altimeter_view = false;
                         position_view = true;
 
-                        rot_view = false;
+						altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+						altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
+						altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
+
+						rot_view = false;
                         euler1.Content = "";
                         euler2.Content = "";
                         euler3.Content = "";
 
                         stage_view = false;
                         engflag.Content = "";
-                    } else if (rotation_view.IsPressed)
+                    } else if (rotation_btn.IsPressed)
                     {
                         altimeter_view = false;
                         position_view = false;
                         pos1c.Content = "";
                         pos2c.Content = "";
                         pos3c.Content = "";
+
+						altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+						altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
+						altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
+
+						altimeter_las.Margin = new Thickness();
 
                         rot_view = true;
 
                         stage_view = false;
                         engflag.Content = "";
-                    } else if (staging_view.IsPressed)
+                    } else if (staging_btn.IsPressed)
                     {
                         altimeter_view = false;
                         position_view = false;
@@ -111,13 +126,17 @@ namespace Nasa_ADC
                         pos2c.Content = "";
                         pos3c.Content = "";
 
-                        rot_view = false;
+						altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+						altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
+						altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
+
+						rot_view = false;
                         euler1.Content = "";
                         euler2.Content = "";
                         euler3.Content = "";
 
-                        stage_view = true;
-                    } else if (restore_view.IsPressed)
+                        stage_view = true;						
+                    } else if (restore_btn.IsPressed)
                     {
                         altimeter_view = false;
                         position_view = false;
@@ -125,7 +144,11 @@ namespace Nasa_ADC
                         pos2c.Content = "";
                         pos3c.Content = "";
 
-                        rot_view = false;
+						altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+						altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
+						altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
+
+						rot_view = false;
                         euler1.Content = "";
                         euler2.Content = "";
                         euler3.Content = "";
@@ -134,31 +157,63 @@ namespace Nasa_ADC
                         engflag.Content = "";
                     }
 
-                    if (altimeter_view)
-                    {                    
-                        pos1c.Content = "Altitude of LAS = " + pos1[0];
+					if (altimeter_view)
+					{
+						/*
+						pos1c.Content = "Altitude of LAS = " + pos1[0];
+						
+						pos2c.Content = "Altitude of Command Module = " + pos2[0];
 
-                        pos2c.Content = "Altitude of Command Module = " + pos2[0];
+						pos3c.Content = "Altitude of Main Thruster = " + pos3[0];						
+						*/
+						alti_las_lbl.Content = "LAS";
+						alti_cm_lbl.Content = "CM";
+						alti_bstr_lbl.Content = "Thruster";
 
-                        pos3c.Content = "Altitude of Main Thruster = " + pos3[0];
-                    } else if (position_view)
-                    {
-                        pos1c.Content = "Position of LAS: Latitude = " + pos1[1] + " Longitude = " + pos1[2];
+						if (pos1[0] > 0)
+						{
+							altimeter_las.Margin = new Thickness(240, 282 - (pos1[0] * 0.005), 454, 138);
+							altimeter_cm.Margin = new Thickness(450, 282 - (pos2[0] * 0.005), 244, 138);
+							altimeter_bstr.Margin = new Thickness(660, 282 - (pos3[0] * 0.005), 34, 138);
+						}
 
-                        pos2c.Content = "Position of LAS: Latitude = " + pos2[1] + " Longitude = " + pos2[2];
+					} else if (position_view)
+					{
+						pos1c.Content = "Position of LAS: Latitude = " + pos1[1] + " Longitude = " + pos1[2];
 
-                        pos3c.Content = "Position of LAS: Latitude = " + pos3[1] + " Longitude = " + pos3[2];
-                    } else if (rot_view)
-                    {
-                        euler1.Content = "LAS: Yaw = " + GetEulerAngles(quat1).Item1 + " Pitch = " + GetEulerAngles(quat1).Item2 + " Roll = " + GetEulerAngles(quat1).Item3;
+						pos2c.Content = "Position of LAS: Latitude = " + pos2[1] + " Longitude = " + pos2[2];
 
-                        euler2.Content = "Command Module: Yaw = " + GetEulerAngles(quat2).Item1 + " Pitch = " + GetEulerAngles(quat2).Item2 + " Roll = " + GetEulerAngles(quat2).Item3;
+						pos3c.Content = "Position of LAS: Latitude = " + pos3[1] + " Longitude = " + pos3[2];
+					} else if (rot_view)
+					{
+						euler1.Content = "LAS: Yaw = " + GetEulerAngles(quat1).Item1 + " Pitch = " + GetEulerAngles(quat1).Item2 + " Roll = " + GetEulerAngles(quat1).Item3;
 
-                        euler1.Content = "Main Thruster: Yaw = " + GetEulerAngles(quat3).Item1 + " Pitch = " + GetEulerAngles(quat3).Item2 + " Roll = " + GetEulerAngles(quat3).Item3;
+						euler2.Content = "Command Module: Yaw = " + GetEulerAngles(quat2).Item1 + " Pitch = " + GetEulerAngles(quat2).Item2 + " Roll = " + GetEulerAngles(quat2).Item3;
+
+						euler1.Content = "Main Thruster: Yaw = " + GetEulerAngles(quat3).Item1 + " Pitch = " + GetEulerAngles(quat3).Item2 + " Roll = " + GetEulerAngles(quat3).Item3;
                     } else if (stage_view)
                     {
-                        engflag.Content = "Stage = " + engine_flag;
-                    }
+						switch (engine_flag)
+						{
+
+							case 0:
+								engflag.Content = "Stage: No Engines Firing";
+								break;
+							case 1:
+								engflag.Content = "Stage: Main Thruster Firing";
+								break;
+							case 2:
+								engflag.Content = "Stage: LAS Firing";
+								break;
+							case 3:
+								engflag.Content = "Stage: All Engines Firing";
+								break;
+							default:
+								engflag.Content = "";
+								break;
+
+						}
+					}
 
                     /*
                     pos1c.Content = "Pos1 =" + pos1[0] + "," + pos1[1] + "," + pos1[2];
@@ -186,11 +241,7 @@ namespace Nasa_ADC
             }
         }
 
-        private void RecvWork_DoWork(object sender, DoWorkEventArgs e)
-        {
-            SReceive();
-            
-        }
+        private void RecvWork_DoWork(object sender, DoWorkEventArgs e){ SReceive(); }
 
         
 
@@ -251,14 +302,7 @@ namespace Nasa_ADC
 
             
 
-            while (true)
-            {
-                Byte[] data = client.Receive(ref localEp);
-                
-
-                
-                await setBuffer(data);
-            }
+            while (true) { Byte[] data = client.Receive(ref localEp); await setBuffer(data); }
         }
 
         public static void print_payload() // for debug purposes
