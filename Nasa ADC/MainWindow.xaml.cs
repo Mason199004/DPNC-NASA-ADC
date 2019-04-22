@@ -68,94 +68,7 @@ namespace Nasa_ADC
             {
                 Dispatcher.Invoke((Action)(() =>
                 {
-                    if (alti_btn.IsPressed)
-                    {
-                        altimeter_view = true;
-                        position_view = false;
-
-						altimeter_las.Margin = new Thickness(240, 285, 454, 138);
-						altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
-						altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
-
-						rot_view = false;
-                        euler1.Content = "";
-                        euler2.Content = "";
-                        euler3.Content = "";
-
-                        stage_view = false;
-                        engflag.Content = "";
-                    } else if (pos_btn.IsPressed)
-                    {
-                        altimeter_view = false;
-                        position_view = true;
-
-						altimeter_las.Margin = new Thickness(240, 285, 454, 138);
-						altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
-						altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
-
-						rot_view = false;
-                        euler1.Content = "";
-                        euler2.Content = "";
-                        euler3.Content = "";
-
-                        stage_view = false;
-                        engflag.Content = "";
-                    } else if (rotation_btn.IsPressed)
-                    {
-                        altimeter_view = false;
-                        position_view = false;
-                        pos1c.Content = "";
-                        pos2c.Content = "";
-                        pos3c.Content = "";
-
-						altimeter_las.Margin = new Thickness(240, 285, 454, 138);
-						altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
-						altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
-
-						altimeter_las.Margin = new Thickness();
-
-                        rot_view = true;
-
-                        stage_view = false;
-                        engflag.Content = "";
-                    } else if (staging_btn.IsPressed)
-                    {
-                        altimeter_view = false;
-                        position_view = false;
-                        pos1c.Content = "";
-                        pos2c.Content = "";
-                        pos3c.Content = "";
-
-						altimeter_las.Margin = new Thickness(240, 285, 454, 138);
-						altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
-						altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
-
-						rot_view = false;
-                        euler1.Content = "";
-                        euler2.Content = "";
-                        euler3.Content = "";
-
-                        stage_view = true;						
-                    } else if (restore_btn.IsPressed)
-                    {
-                        altimeter_view = false;
-                        position_view = false;
-                        pos1c.Content = "";
-                        pos2c.Content = "";
-                        pos3c.Content = "";
-
-						altimeter_las.Margin = new Thickness(240, 285, 454, 138);
-						altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
-						altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
-
-						rot_view = false;
-                        euler1.Content = "";
-                        euler2.Content = "";
-                        euler3.Content = "";
-
-                        stage_view = false;
-                        engflag.Content = "";
-                    }
+                    
 
 					if (altimeter_view)
 					{
@@ -172,26 +85,29 @@ namespace Nasa_ADC
 
 						if (pos1[0] > 0)
 						{
-							altimeter_las.Margin = new Thickness(240, 282 - (pos1[0] * 0.005), 454, 138);
-							altimeter_cm.Margin = new Thickness(450, 282 - (pos2[0] * 0.005), 244, 138);
-							altimeter_bstr.Margin = new Thickness(660, 282 - (pos3[0] * 0.005), 34, 138);
+							altimeter_las.Margin = new Thickness(135, 282 - (pos1[0] * 0.005), 241, 132);
+							altimeter_cm.Margin = new Thickness(240, 282 - (pos2[0] * 0.005), 136, 132);
+							altimeter_bstr.Margin = new Thickness(366, 282 - (pos3[0] * 0.005), 10, 132);
 						}
 
-					} else if (position_view)
+					}
+                    else if (position_view)
 					{
 						pos1c.Content = "Position of LAS: Latitude = " + pos1[1] + " Longitude = " + pos1[2];
 
 						pos2c.Content = "Position of LAS: Latitude = " + pos2[1] + " Longitude = " + pos2[2];
 
 						pos3c.Content = "Position of LAS: Latitude = " + pos3[1] + " Longitude = " + pos3[2];
-					} else if (rot_view)
+					}
+                    else if (rot_view)
 					{
 						euler1.Content = "LAS: Yaw = " + GetEulerAngles(quat1).Item1 + " Pitch = " + GetEulerAngles(quat1).Item2 + " Roll = " + GetEulerAngles(quat1).Item3;
 
 						euler2.Content = "Command Module: Yaw = " + GetEulerAngles(quat2).Item1 + " Pitch = " + GetEulerAngles(quat2).Item2 + " Roll = " + GetEulerAngles(quat2).Item3;
 
 						euler1.Content = "Main Thruster: Yaw = " + GetEulerAngles(quat3).Item1 + " Pitch = " + GetEulerAngles(quat3).Item2 + " Roll = " + GetEulerAngles(quat3).Item3;
-                    } else if (stage_view)
+                    }
+                    else if (stage_view)
                     {
 						switch (engine_flag)
 						{
@@ -215,33 +131,16 @@ namespace Nasa_ADC
 						}
 					}
 
-                    /*
-                    pos1c.Content = "Pos1 =" + pos1[0] + "," + pos1[1] + "," + pos1[2];
-
-                    pos2c.Content = "Pos2 =" + pos2[0] + "," + pos2[1] + "," + pos2[2];
-
-                    pos3c.Content = "Pos3 =" + pos3[0] + "," + pos3[1] + "," + pos3[2];
-
-                    quat1c.Content = "Quat1=" + quat1[0] + "," + quat1[1] + "," + quat1[2] + "," + quat1[3];
-
-                    quat2c.Content = "Quat2=" + quat2[0] + "," + quat2[1] + "," + quat2[2] + "," + quat2[3];
-
-                    quat3c.Content = "Quat3=" + quat3[0] + "," + quat3[1] + "," + quat3[2] + "," + quat3[3];
-
-                    euler1.Content = "LAS = " + "Yaw: " + GetEulerAngles(quat1).Item1 + " Pitch: " + GetEulerAngles(quat1).Item2 + " Roll: " + GetEulerAngles(quat1).Item3;
-
-                    euler2.Content = "CM = " + "Yaw: " + GetEulerAngles(quat2).Item1 + " Pitch: " + GetEulerAngles(quat2).Item2 + " Roll: " + GetEulerAngles(quat2).Item3;
-
-                    euler3.Content = "Launch Rocket = " + "Yaw: " + GetEulerAngles(quat3).Item1 + " Pitch: " + GetEulerAngles(quat3).Item2 + " Roll: " + GetEulerAngles(quat3).Item3;
-
-                    engflag.Content = "Engine Flag: " + engine_flag;
-                    */
+                    
                 }));
                 await Task.Delay(1);
             }
         }
 
-        private void RecvWork_DoWork(object sender, DoWorkEventArgs e){ SReceive(); }
+        private void RecvWork_DoWork(object sender, DoWorkEventArgs e)
+        {
+            SReceive();
+        }
 
         
 
@@ -373,7 +272,120 @@ namespace Nasa_ADC
             engine_flag = extractInt(offset); offset += 4;
             reserved = extractInt(offset); offset += 4;
             //print_payload();
-        }        
+        }
+
+        private void Alti_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.Invoke((Action)(() =>
+            {
+                altimeter_view = true;
+                position_view = false;
+
+                altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+                altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
+                altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
+
+                rot_view = false;
+                euler1.Content = "";
+                euler2.Content = "";
+                euler3.Content = "";
+
+                stage_view = false;
+                engflag.Content = "";
+            }));
+        }
+
+        private void Rotation_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.Invoke((Action)(() =>
+            {
+                altimeter_view = false;
+                position_view = false;
+                pos1c.Content = "";
+                pos2c.Content = "";
+                pos3c.Content = "";
+
+                altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+                altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
+                altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
+
+                altimeter_las.Margin = new Thickness();
+
+                rot_view = true;
+
+                stage_view = false;
+                engflag.Content = "";
+            }));
+        }
+
+        private void Pos_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.Invoke((Action)(() =>
+            {
+                altimeter_view = false;
+                position_view = true;
+
+                altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+                altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
+                altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
+
+                rot_view = false;
+                euler1.Content = "";
+                euler2.Content = "";
+                euler3.Content = "";
+
+                stage_view = false;
+                engflag.Content = "";
+            }));
+        }
+
+        private void Staging_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.Invoke((Action)(() =>
+            {
+                altimeter_view = false;
+                position_view = false;
+                pos1c.Content = "";
+                pos2c.Content = "";
+                pos3c.Content = "";
+
+                altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+                altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
+                altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
+
+                rot_view = false;
+                euler1.Content = "";
+                euler2.Content = "";
+                euler3.Content = "";
+
+                stage_view = true;
+            }));
+        }
+
+        private void Restore_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.Invoke((Action)(() =>
+            {
+                altimeter_view = false;
+                position_view = false;
+                pos1c.Content = "";
+                pos2c.Content = "";
+                pos3c.Content = "";
+
+                altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+                altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
+                altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
+
+                rot_view = false;
+                euler1.Content = "";
+                euler2.Content = "";
+                euler3.Content = "";
+
+                stage_view = false;
+                engflag.Content = "";
+            }));
+
+        }
     }
     
 }

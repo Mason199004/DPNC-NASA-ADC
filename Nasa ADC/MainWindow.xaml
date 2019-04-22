@@ -5,43 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nasa_ADC"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize">
-	<Grid>
+        Title="MainWindow" Height="446.218" Width="458.403" ResizeMode="CanMinimize">
+    <Grid>
 
-		<!-- The Altitude, Latitude, and Longitude of Each Componenet -->
-		<Label x:Name="pos1c" Content="" HorizontalAlignment="Left" Margin="240,25,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-		<Label x:Name="pos2c" Content="" HorizontalAlignment="Left" Margin="240,50,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-		<Label x:Name="pos3c" Content="" HorizontalAlignment="Left" Margin="240,75,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <!-- The Altitude, Latitude, and Longitude of Each Componenet -->
+        <Label x:Name="pos1c" Content="" HorizontalAlignment="Left" Margin="240,25,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="pos2c" Content="" HorizontalAlignment="Left" Margin="240,50,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="pos3c" Content="" HorizontalAlignment="Left" Margin="240,75,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
 
-		<!-- Scale Factor is 0.005 -->
-		<!-- Altitude Graph -->
-		<!-- LAS -->
-		<Rectangle x:Name="altimeter_las"  Width="100" Margin="240, 285, 454, 138" Fill="DarkBlue" RadiusY="8" RadiusX="8"/>
-		<!-- Command Module -->
-		<Rectangle x:Name="altimeter_cm"  Width="100" Margin="450, 285, 244, 138" Fill="DarkGreen" RadiusY="8" RadiusX="8"/>
-		<!-- Main Thruster -->
-		<Rectangle x:Name="altimeter_bstr"  Width="100" Margin="660, 285, 34, 138" Fill="DarkRed" RadiusY="8" RadiusX="8"/>
+        <!-- Scale Factor is 0.005 -->
+        <!-- Altitude Graph -->
+        <!-- LAS -->
+        <Rectangle x:Name="altimeter_las" Margin="135,285,241,132" Fill="DarkBlue" RadiusY="8" RadiusX="8"/>
+        <!-- Command Module -->
+        <Rectangle x:Name="altimeter_cm" Margin="240,285,136,132" Fill="DarkGreen" RadiusY="8" RadiusX="8"/>
+        <!-- Main Thruster -->
+        <Rectangle x:Name="altimeter_bstr" Margin="366,285,10,132" Fill="DarkRed" RadiusY="8" RadiusX="8"/>
 
-		<!-- The Yaw, Pitch, and Roll of Each Component -->
-		<Label x:Name="euler1" Content="" HorizontalAlignment="Left" Margin="240, 25, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
-		<Label x:Name="euler2" Content="" HorizontalAlignment="Left" Margin="240, 50, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
-		<Label x:Name="euler3" Content="" HorizontalAlignment="Left" Margin="240, 75, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <!-- The Yaw, Pitch, and Roll of Each Component -->
+        <Label x:Name="euler1" Content="" HorizontalAlignment="Left" Margin="240, 25, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="euler2" Content="" HorizontalAlignment="Left" Margin="240, 50, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <Label x:Name="euler3" Content="" HorizontalAlignment="Left" Margin="240, 75, 0, 0" VerticalAlignment="Top" Height="30" Width="552"/>
 
-		<!-- Engie Flag(Which Engine is firing) -->
-		<Label x:Name="engflag" Content="" HorizontalAlignment="Left" Margin="240,35,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
+        <!-- Engie Flag(Which Engine is firing) -->
+        <Label x:Name="engflag" Content="" HorizontalAlignment="Left" Margin="240,35,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
 
-		<!-- Left Side of the UI -->
+        <!-- Left Side of the UI -->
 
-		<Button x:Name="alti_btn" Content="Altimeter" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Width="210" Height="105"/>
-		<Button x:Name="rotation_btn" Content="Rotation" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,105,0,0" Width="210" Height="105"/>
-		<Button x:Name="pos_btn" Content="Position" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,105" Width="210" Height="105"/>
-		<Button x:Name="staging_btn" Content="Staging" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="210" Height="105"/>
+        <Button x:Name="alti_btn" Content="Altimeter" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Width="119" Height="105" Click="Alti_btn_Click" FontSize="24" />
+        <Button x:Name="rotation_btn" Content="Rotation" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,105,0,0" Width="119" Height="105"  Click="Rotation_btn_Click" FontSize="24"/>
+        <Button x:Name="pos_btn" Content="Position" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,105" Width="119" Height="105" Click="Pos_btn_Click" FontSize="24" />
+        <Button x:Name="staging_btn" Content="Staging" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="119" Height="105" Click="Staging_btn_Click" FontSize="24" />
 
-		<Button x:Name="restore_btn" Content="Restore View to Default" TextElement.FontSize="40px" HorizontalAlignment="Left"  Margin="210,306,0,0" Width="582"/>
+        <Button x:Name="restore_btn" Content="Restore View to Default" TextElement.FontSize="40px" HorizontalAlignment="Left"  Margin="119,313,0,2" Width="333" Click="Restore_btn_Click" FontSize="24" />
 
-		<Label x:Name="alti_las_lbl" Content="" HorizontalAlignment="Left" TextElement.FontSize="20px" Margin="266,25,0,0" VerticalAlignment="Top"/>
-		<Label x:Name="alti_cm_lbl" Content="" HorizontalAlignment="Left" TextElement.FontSize="20px" Margin="480,25,0,0" VerticalAlignment="Top"/>
-		<Label x:Name="alti_bstr_lbl" Content="" HorizontalAlignment="Left" TextElement.FontSize="20px" Margin="670,25,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="alti_las_lbl" Content="" HorizontalAlignment="Left" TextElement.FontSize="20px" Margin="165,18,0,0" VerticalAlignment="Top" FontSize="14" Width="46"/>
+        <Label x:Name="alti_cm_lbl" Content="" HorizontalAlignment="Left" TextElement.FontSize="20px" Margin="274,18,0,0" VerticalAlignment="Top" FontSize="14" Width="42"/>
+        <Label x:Name="alti_bstr_lbl" Content="" HorizontalAlignment="Left" TextElement.FontSize="20px" Margin="364,18,0,0" VerticalAlignment="Top" FontSize="14" Width="78"/>
 
-	</Grid>
+    </Grid>
 </Window>
