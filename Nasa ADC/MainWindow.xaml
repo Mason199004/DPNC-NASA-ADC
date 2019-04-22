@@ -16,7 +16,7 @@
 		<!-- Scale Factor is 0.005 -->
 		<!-- Altitude Graph -->
 		<!-- LAS -->
-		<Rectangle x:Name="altimeter_las"  Width="100" Margin="240, 205, 454, 138" Fill="DarkBlue" RadiusY="8" RadiusX="8"/>
+		<Rectangle x:Name="altimeter_las"  Width="100" Margin="240, 285, 454, 138" Fill="DarkBlue" RadiusY="8" RadiusX="8"/>
 		<!-- Command Module -->
 		<Rectangle x:Name="altimeter_cm"  Width="100" Margin="450, 285, 244, 138" Fill="DarkGreen" RadiusY="8" RadiusX="8"/>
 		<!-- Main Thruster -->
