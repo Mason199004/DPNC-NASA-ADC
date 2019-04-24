@@ -146,6 +146,35 @@ namespace Nasa_ADC
 
         public Tuple<double, double, double> GetEulerAngles(double[] q)
         {
+
+			double sinr_cosp = +2.0 * (q[0] * q[1] + q[2] * q[3]);
+			double cosr_cosp = +1.0 - 2.0 * (q[1] * q[1] + q[2] * q[2]);
+			roll = Math.Atan2(sinr_cosp, cosr_cosp);
+
+			double sinp = +2.0 * (q[0] * q[2] - q[3] * q[1]);
+			if (Math.Abs(sinp) >= 1)
+			{
+				if (sinp > 0)
+				{
+					pitch = Math.PI; // use 90 degrees if out of range
+				}
+				if (sinp < 0)
+				{
+					pitch = -Math.PI;
+				}
+			}
+			else
+			{
+				pitch = Math.Asin(sinp);
+			}
+
+			double siny_cosp = +2.0 * (q[0] * q[3] + q[1] * q[2]);
+			double cosy_cosp = +1.0 - 2.0 * (q[2] * q[2] + q[3] * q[3]);
+			yaw = Math.Atan2(siny_cosp, cosy_cosp);
+
+			return Tuple.Create(yaw, pitch, roll);
+
+			/*
             double w2 = q[0] * q[0];
             double x2 = q[1] * q[1];
             double y2 = q[2] * q[2];
@@ -181,7 +210,8 @@ namespace Nasa_ADC
 
                 return Tuple.Create(yaw, pitch, roll);
             }
-        }
+			*/
+		}
 
         // Extracts data from jar file through multicast
         public async Task SReceive()
@@ -281,11 +311,11 @@ namespace Nasa_ADC
                 altimeter_view = true;
                 position_view = false;
 
-                altimeter_las.Margin = new Thickness(240, 285, 454, 138);
-                altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
-                altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
+				pos1c.Content = "";
+				pos2c.Content = "";
+				pos3c.Content = "";
 
-                rot_view = false;
+				rot_view = false;
                 euler1.Content = "";
                 euler2.Content = "";
                 euler3.Content = "";
@@ -305,11 +335,13 @@ namespace Nasa_ADC
                 pos2c.Content = "";
                 pos3c.Content = "";
 
-                altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+				alti_las_lbl.Content = "";
+				alti_cm_lbl.Content = "";
+				alti_bstr_lbl.Content = "";
+
+				altimeter_las.Margin = new Thickness(240, 285, 454, 138);
                 altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
                 altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
-
-                altimeter_las.Margin = new Thickness();
 
                 rot_view = true;
 
@@ -325,7 +357,11 @@ namespace Nasa_ADC
                 altimeter_view = false;
                 position_view = true;
 
-                altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+				alti_las_lbl.Content = "";
+				alti_cm_lbl.Content = "";
+				alti_bstr_lbl.Content = "";
+
+				altimeter_las.Margin = new Thickness(240, 285, 454, 138);
                 altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
                 altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
 
@@ -349,7 +385,11 @@ namespace Nasa_ADC
                 pos2c.Content = "";
                 pos3c.Content = "";
 
-                altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+				alti_las_lbl.Content = "";
+				alti_cm_lbl.Content = "";
+				alti_bstr_lbl.Content = "";
+
+				altimeter_las.Margin = new Thickness(240, 285, 454, 138);
                 altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
                 altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
 
@@ -372,7 +412,11 @@ namespace Nasa_ADC
                 pos2c.Content = "";
                 pos3c.Content = "";
 
-                altimeter_las.Margin = new Thickness(240, 285, 454, 138);
+				alti_las_lbl.Content = "";
+				alti_cm_lbl.Content = "";
+				alti_bstr_lbl.Content = "";
+
+				altimeter_las.Margin = new Thickness(240, 285, 454, 138);
                 altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
                 altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
 
