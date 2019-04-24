@@ -101,11 +101,11 @@ namespace Nasa_ADC
 					}
                     else if (rot_view)
 					{
-						euler1.Content = "LAS: Yaw = " + GetEulerAngles(quat1).Item1 + " Pitch = " + GetEulerAngles(quat1).Item2 + " Roll = " + GetEulerAngles(quat1).Item3;
+						euler1.Content = "LAS: Yaw = " + ToDegree(GetEulerAngles(quat1).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat1).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat1).Item3);
 
-						euler2.Content = "Command Module: Yaw = " + GetEulerAngles(quat2).Item1 + " Pitch = " + GetEulerAngles(quat2).Item2 + " Roll = " + GetEulerAngles(quat2).Item3;
+						euler2.Content = "Command Module: Yaw = " + ToDegree(GetEulerAngles(quat2).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat2).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat2).Item3);
 
-						euler1.Content = "Main Thruster: Yaw = " + GetEulerAngles(quat3).Item1 + " Pitch = " + GetEulerAngles(quat3).Item2 + " Roll = " + GetEulerAngles(quat3).Item3;
+						euler3.Content = "Main Thruster: Yaw = " + ToDegree(GetEulerAngles(quat3).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat3).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat3).Item3);
                     }
                     else if (stage_view)
                     {
@@ -211,6 +211,12 @@ namespace Nasa_ADC
                 return Tuple.Create(yaw, pitch, roll);
             }
 			*/
+		}
+
+		public double ToDegree(double rad)
+		{
+			double ang = rad * (180 / Math.PI);
+			return ang;
 		}
 
         // Extracts data from jar file through multicast
