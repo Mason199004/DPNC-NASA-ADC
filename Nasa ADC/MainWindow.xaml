@@ -8,10 +8,10 @@
         Title="MainWindow" Height="446.218" Width="458.403" ResizeMode="CanMinimize">
     <Grid>
 
-        <!-- The Altitude, Latitude, and Longitude of Each Componenet -->
-        <Label x:Name="pos1c" Content="" HorizontalAlignment="Left" Margin="120,25,0,0" VerticalAlignment="Top" Height="30" Width="330"/>
-        <Label x:Name="pos2c" Content="" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" Height="30" Width="330"/>
-        <Label x:Name="pos3c" Content="" HorizontalAlignment="Left" Margin="120,75,0,0" VerticalAlignment="Top" Height="30" Width="330"/>
+        <!-- The Altitude, Latitude, and Longitude of Each Componenet -->		
+        <TextBlock x:Name="pos1c" Text="" HorizontalAlignment="Left" Margin="120,25,0,0" VerticalAlignment="Top" Height="60" Width="330" TextWrapping="Wrap"/>
+		<TextBlock x:Name="pos2c" Text="" HorizontalAlignment="Left" Margin="120,85,0,0" VerticalAlignment="Top" Height="60" Width="330" TextWrapping="Wrap"/>
+		<TextBlock x:Name="pos3c" Text="" HorizontalAlignment="Left" Margin="120,145,0,0" VerticalAlignment="Top" Height="60" Width="330" TextWrapping="Wrap"/>
 
         <!-- Scale Factor is 0.005 -->
         <!-- Altitude Graph -->
@@ -23,21 +23,21 @@
         <Rectangle x:Name="altimeter_bstr" Margin="345,285,30,132" Fill="DarkRed" RadiusY="8" RadiusX="8"/>
 
         <!-- The Yaw, Pitch, and Roll of Each Component -->
-        <Label x:Name="euler1" Content="" HorizontalAlignment="Left" Margin="120, 25, 0, 0" VerticalAlignment="Top" Height="30" Width="330"/>
-		<Label x:Name="euler2" Content="" HorizontalAlignment="Left" Margin="120, 50, 0, 0" VerticalAlignment="Top" Height="30" Width="330"/>
-		<Label x:Name="euler3" Content="" HorizontalAlignment="Left" Margin="120, 75, 0, 0" VerticalAlignment="Top" Height="30" Width="330"/>
+		<TextBlock x:Name="euler1" Text="" HorizontalAlignment="Left" Margin="120, 25, 0, 0" VerticalAlignment="Top" Height="60" Width="330" TextWrapping="Wrap"/>
+		<TextBlock x:Name="euler2" Text="" HorizontalAlignment="Left" Margin="120, 85, 0, 0" VerticalAlignment="Top" Height="60" Width="330" TextWrapping="Wrap"/>
+		<TextBlock x:Name="euler3" Text="" HorizontalAlignment="Left" Margin="120, 145, 0, 0" VerticalAlignment="Top" Height="60" Width="330" TextWrapping="Wrap"/>
 
         <!-- Engie Flag(Which Engine is firing) -->
 		<Label x:Name="engflag" Content="" HorizontalAlignment="Left" Margin="120,35,0,0" VerticalAlignment="Top" Height="30" Width="330"/>
 
         <!-- Left Side of the UI -->
 
-        <Button x:Name="alti_btn" Content="Altimeter" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Width="119" Height="105" Click="Alti_btn_Click" FontSize="24" />
-        <Button x:Name="rotation_btn" Content="Rotation" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,105,0,0" Width="119" Height="105"  Click="Rotation_btn_Click" FontSize="24"/>
-        <Button x:Name="pos_btn" Content="Position" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,105" Width="119" Height="105" Click="Pos_btn_Click" FontSize="24" />
-        <Button x:Name="staging_btn" Content="Staging" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="119" Height="105" Click="Staging_btn_Click" FontSize="24" />
+		<Button x:Name="alti_btn" BorderBrush="White" Background="Black" TextElement.Foreground="White" Content="Altimeter" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Width="119" Height="105" Click="Alti_btn_Click" FontSize="24" />
+		<Button x:Name="rotation_btn" BorderBrush="White" Background="Black" TextElement.Foreground="White" Content="Rotation" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,105,0,0" Width="119" Height="105"  Click="Rotation_btn_Click" FontSize="24"/>
+		<Button x:Name="pos_btn" BorderBrush="White" Background="Black" TextElement.Foreground="White" Content="Position" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,105" Width="119" Height="105" Click="Pos_btn_Click" FontSize="24" />
+		<Button x:Name="staging_btn" BorderBrush="White" Background="Black" TextElement.Foreground="White" Content="Staging" TextElement.FontSize="40px" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="119" Height="105" Click="Staging_btn_Click" FontSize="24" />
 
-        <Button x:Name="restore_btn" Content="Restore View to Default" TextElement.FontSize="40px" HorizontalAlignment="Left"  Margin="119,313,0,0" Width="333" Click="Restore_btn_Click" FontSize="24" />
+		<Button x:Name="restore_btn" Background="Black" TextElement.Foreground="White" Content="Restore View to Default" TextElement.FontSize="40px" HorizontalAlignment="Left"  Margin="119,313,0,0" Width="333" Click="Restore_btn_Click" FontSize="24" />
 
         <Label x:Name="alti_las_lbl" Content="" HorizontalAlignment="Left" TextElement.FontSize="20px" Margin="156,21,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="alti_cm_lbl" Content="" HorizontalAlignment="Left" TextElement.FontSize="20px" Margin="263,21,0,0" VerticalAlignment="Top" FontSize="14"/>

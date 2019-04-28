@@ -24,7 +24,9 @@ namespace Nasa_ADC
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {				
+    {
+		public const string button_fill = "LightBlue";
+
         public bool altimeter_view = false;
         public bool position_view = false;
         public bool rot_view = false;
@@ -67,11 +69,9 @@ namespace Nasa_ADC
             while (true)
             {
                 Dispatcher.Invoke((Action)(() =>
-                {
-                    
-
+                {                    
 					if (altimeter_view)
-					{
+					{												
 						/*
 						pos1c.Content = "Altitude of LAS = " + pos1[0];
 						
@@ -93,19 +93,19 @@ namespace Nasa_ADC
 					}
                     else if (position_view)
 					{
-						pos1c.Content = "Position of LAS: Latitude = " + pos1[1] + " Longitude = " + pos1[2];
+						pos1c.Text = "Position of LAS: Latitude = " + pos1[1] + " Longitude = " + pos1[2];
 
-						pos2c.Content = "Position of LAS: Latitude = " + pos2[1] + " Longitude = " + pos2[2];
+						pos2c.Text = "Position of LAS: Latitude = " + pos2[1] + " Longitude = " + pos2[2];
 
-						pos3c.Content = "Position of LAS: Latitude = " + pos3[1] + " Longitude = " + pos3[2];
+						pos3c.Text = "Position of LAS: Latitude = " + pos3[1] + " Longitude = " + pos3[2];
 					}
                     else if (rot_view)
 					{
-						euler1.Content = "LAS: Yaw = " + ToDegree(GetEulerAngles(quat1).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat1).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat1).Item3);
+						euler1.Text = "LAS: Yaw = " + ToDegree(GetEulerAngles(quat1).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat1).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat1).Item3);
 
-						euler2.Content = "Command Module: Yaw = " + ToDegree(GetEulerAngles(quat2).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat2).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat2).Item3);
+						euler2.Text = "Command Module: Yaw = " + ToDegree(GetEulerAngles(quat2).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat2).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat2).Item3);
 
-						euler3.Content = "Main Thruster: Yaw = " + ToDegree(GetEulerAngles(quat3).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat3).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat3).Item3);
+						euler3.Text = "Main Thruster: Yaw = " + ToDegree(GetEulerAngles(quat3).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat3).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat3).Item3);
                     }
                     else if (stage_view)
                     {
@@ -156,11 +156,11 @@ namespace Nasa_ADC
 			{
 				if (sinp > 0)
 				{
-					pitch = Math.PI; // use 90 degrees if out of range
+					pitch = Math.PI / 2; // use 90 degrees if out of range
 				}
 				if (sinp < 0)
 				{
-					pitch = -Math.PI;
+					pitch = -Math.PI / 2;
 				}
 			}
 			else
@@ -314,17 +314,23 @@ namespace Nasa_ADC
         {
             Dispatcher.Invoke((Action)(() =>
             {
-                altimeter_view = true;
+				alti_btn.Background = Brushes.LightBlue;
+				rotation_btn.Background = Brushes.Black;
+				pos_btn.Background = Brushes.Black;				;
+				staging_btn.Background = Brushes.Black;
+				restore_btn.Background = Brushes.Black;
+
+				altimeter_view = true;
                 position_view = false;
 
-				pos1c.Content = "";
-				pos2c.Content = "";
-				pos3c.Content = "";
+				pos1c.Text = "";
+				pos2c.Text = "";
+				pos3c.Text = "";
 
 				rot_view = false;
-                euler1.Content = "";
-                euler2.Content = "";
-                euler3.Content = "";
+                euler1.Text = "";
+                euler2.Text = "";
+                euler3.Text = "";
 
                 stage_view = false;
                 engflag.Content = "";
@@ -335,11 +341,17 @@ namespace Nasa_ADC
         {
             Dispatcher.Invoke((Action)(() =>
             {
-                altimeter_view = false;
+				alti_btn.Background = Brushes.Black;
+				rotation_btn.Background = Brushes.LightBlue;
+				pos_btn.Background = Brushes.Black;
+				staging_btn.Background = Brushes.Black;
+				restore_btn.Background = Brushes.Black;
+
+				altimeter_view = false;
                 position_view = false;
-                pos1c.Content = "";
-                pos2c.Content = "";
-                pos3c.Content = "";
+                pos1c.Text = "";
+                pos2c.Text = "";
+                pos3c.Text = "";
 
 				alti_las_lbl.Content = "";
 				alti_cm_lbl.Content = "";
@@ -360,7 +372,13 @@ namespace Nasa_ADC
         {
             Dispatcher.Invoke((Action)(() =>
             {
-                altimeter_view = false;
+				alti_btn.Background = Brushes.Black;
+				rotation_btn.Background = Brushes.Black;
+				pos_btn.Background = Brushes.LightBlue;
+				staging_btn.Background = Brushes.Black;
+				restore_btn.Background = Brushes.Black;
+
+				altimeter_view = false;
                 position_view = true;
 
 				alti_las_lbl.Content = "";
@@ -372,9 +390,9 @@ namespace Nasa_ADC
                 altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
 
                 rot_view = false;
-                euler1.Content = "";
-                euler2.Content = "";
-                euler3.Content = "";
+                euler1.Text = "";
+                euler2.Text = "";
+                euler3.Text = "";
 
                 stage_view = false;
                 engflag.Content = "";
@@ -385,11 +403,17 @@ namespace Nasa_ADC
         {
             Dispatcher.Invoke((Action)(() =>
             {
-                altimeter_view = false;
+				alti_btn.Background = Brushes.Black;
+				rotation_btn.Background = Brushes.Black;
+				pos_btn.Background = Brushes.Black;
+				staging_btn.Background = Brushes.LightBlue;
+				restore_btn.Background = Brushes.Black;
+
+				altimeter_view = false;
                 position_view = false;
-                pos1c.Content = "";
-                pos2c.Content = "";
-                pos3c.Content = "";
+                pos1c.Text = "";
+                pos2c.Text = "";
+                pos3c.Text = "";
 
 				alti_las_lbl.Content = "";
 				alti_cm_lbl.Content = "";
@@ -400,9 +424,9 @@ namespace Nasa_ADC
                 altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
 
                 rot_view = false;
-                euler1.Content = "";
-                euler2.Content = "";
-                euler3.Content = "";
+                euler1.Text = "";
+                euler2.Text = "";
+                euler3.Text = "";
 
                 stage_view = true;
             }));
@@ -412,11 +436,17 @@ namespace Nasa_ADC
         {
             Dispatcher.Invoke((Action)(() =>
             {
+				alti_btn.Background = Brushes.Black;
+				rotation_btn.Background = Brushes.Black;
+				pos_btn.Background = Brushes.Black;
+				staging_btn.Background = Brushes.Black;
+				restore_btn.Background = Brushes.LightBlue;
+
                 altimeter_view = false;
                 position_view = false;
-                pos1c.Content = "";
-                pos2c.Content = "";
-                pos3c.Content = "";
+                pos1c.Text = "";
+                pos2c.Text = "";
+                pos3c.Text = "";
 
 				alti_las_lbl.Content = "";
 				alti_cm_lbl.Content = "";
@@ -427,9 +457,9 @@ namespace Nasa_ADC
                 altimeter_bstr.Margin = new Thickness(660, 285, 34, 138);
 
                 rot_view = false;
-                euler1.Content = "";
-                euler2.Content = "";
-                euler3.Content = "";
+                euler1.Text = "";
+                euler2.Text = "";
+                euler3.Text = "";
 
                 stage_view = false;
                 engflag.Content = "";
