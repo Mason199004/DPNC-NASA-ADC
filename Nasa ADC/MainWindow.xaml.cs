@@ -113,19 +113,34 @@ namespace Nasa_ADC
 						{
 
 							case 0:
-								engflag.Content = "Stage: No Engines Firing";
+								las_light.Fill = Brushes.Red;
+								cm_light.Fill = Brushes.Red;
+								bstr_light.Fill = Brushes.Red;
+								//engflag.Content = "Stage: No Engines Firing";
 								break;
 							case 1:
-								engflag.Content = "Stage: Main Thruster Firing";
+								las_light.Fill = Brushes.Green;
+								cm_light.Fill = Brushes.Green;
+								bstr_light.Fill = Brushes.Green;
+								//engflag.Content = "Stage: Main Thruster Firing";
 								break;
 							case 2:
-								engflag.Content = "Stage: LAS Firing";
+								las_light.Fill = Brushes.Green;
+								cm_light.Fill = Brushes.Green;
+								bstr_light.Fill = Brushes.Red;
+								//engflag.Content = "Stage: LAS Firing";
 								break;
 							case 3:
-								engflag.Content = "Stage: All Engines Firing";
+								las_light.Fill = Brushes.Green;
+								cm_light.Fill = Brushes.Green;
+								bstr_light.Fill = Brushes.Yellow;
+								//engflag.Content = "Stage: All Engines Firing";
 								break;
 							default:
-								engflag.Content = "";
+								las_light.Fill = Brushes.White;
+								cm_light.Fill = Brushes.White;
+								bstr_light.Fill = Brushes.White;
+								//engflag.Content = "";
 								break;
 
 						}
@@ -320,6 +335,10 @@ namespace Nasa_ADC
 				staging_btn.Background = Brushes.Black;
 				restore_btn.Background = Brushes.Black;
 
+				las_light.Fill = Brushes.White;
+				cm_light.Fill = Brushes.White;
+				bstr_light.Fill = Brushes.White;
+
 				altimeter_view = true;
                 position_view = false;
 
@@ -346,6 +365,10 @@ namespace Nasa_ADC
 				pos_btn.Background = Brushes.Black;
 				staging_btn.Background = Brushes.Black;
 				restore_btn.Background = Brushes.Black;
+
+				las_light.Fill = Brushes.White;
+				cm_light.Fill = Brushes.White;
+				bstr_light.Fill = Brushes.White;
 
 				altimeter_view = false;
                 position_view = false;
@@ -377,6 +400,10 @@ namespace Nasa_ADC
 				pos_btn.Background = Brushes.LightBlue;
 				staging_btn.Background = Brushes.Black;
 				restore_btn.Background = Brushes.Black;
+
+				las_light.Fill = Brushes.White;
+				cm_light.Fill = Brushes.White;
+				bstr_light.Fill = Brushes.White;
 
 				altimeter_view = false;
                 position_view = true;
@@ -415,9 +442,9 @@ namespace Nasa_ADC
                 pos2c.Text = "";
                 pos3c.Text = "";
 
-				alti_las_lbl.Content = "";
-				alti_cm_lbl.Content = "";
-				alti_bstr_lbl.Content = "";
+				alti_las_lbl.Content = "LAS";
+				alti_cm_lbl.Content = "CM";
+				alti_bstr_lbl.Content = "Thruster";
 
 				altimeter_las.Margin = new Thickness(240, 285, 454, 138);
                 altimeter_cm.Margin = new Thickness(450, 285, 244, 138);
@@ -442,7 +469,11 @@ namespace Nasa_ADC
 				staging_btn.Background = Brushes.Black;
 				restore_btn.Background = Brushes.LightBlue;
 
-                altimeter_view = false;
+				las_light.Fill = Brushes.White;
+				cm_light.Fill = Brushes.White;
+				bstr_light.Fill = Brushes.White;
+
+				altimeter_view = false;
                 position_view = false;
                 pos1c.Text = "";
                 pos2c.Text = "";
