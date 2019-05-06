@@ -52,16 +52,13 @@ namespace Nasa_ADC
 
         private async void UIWork_DoWork(object sender, DoWorkEventArgs e)
         {
-            Dispatcher.Invoke((Action)(() =>
-            {
-                
-            }));
+           
             while (true)
             {
                 Dispatcher.Invoke((Action)(() =>
                 {
+                    //centerv.Margin = new Thickness(490, 0, 0, 0);
 
-                                      
                 }));
                 await Task.Delay(1);
             }
