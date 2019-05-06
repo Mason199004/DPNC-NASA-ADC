@@ -61,25 +61,7 @@ namespace Nasa_ADC
                 Dispatcher.Invoke((Action)(() =>
                 {
 
-                    pos1c.Content = "Pos1 =" + pos1[0] + "," + pos1[1] + "," + pos1[2];
-
-                    pos2c.Content = "Pos2 =" + pos2[0] + "," + pos2[1] + "," + pos2[2];
-
-                    pos3c.Content = "Pos3 =" + pos3[0] + "," + pos3[1] + "," + pos3[2];
-
-                    quat1c.Content = "Quat1=" + quat1[0] + "," + quat1[1] + "," + quat1[2] + "," + quat1[3];
-
-                    quat2c.Content = "Quat2=" + quat2[0] + "," + quat2[1] + "," + quat2[2] + "," + quat2[3];
-
-                    quat3c.Content = "Quat3=" + quat3[0] + "," + quat3[1] + "," + quat3[2] + "," + quat3[3];
-
-                    euler1.Content = "LAS = " + "Yaw: " + GetEulerAngles(quat1).Item1 + " Pitch: " + GetEulerAngles(quat1).Item2 + " Roll: " + GetEulerAngles(quat1).Item3;
-
-                    euler2.Content = "CM = " + "Yaw: " + GetEulerAngles(quat2).Item1 + " Pitch: " + GetEulerAngles(quat2).Item2 + " Roll: " + GetEulerAngles(quat2).Item3;
-
-                    euler3.Content = "Launch Rocket = " + "Yaw: " + GetEulerAngles(quat3).Item1 + " Pitch: " + GetEulerAngles(quat3).Item2 + " Roll: " + GetEulerAngles(quat3).Item3;
-
-                    engflag.Content = "Engine Flag: " + engine_flag;
+                    
                 }));
                 await Task.Delay(1);
             }
@@ -92,17 +74,46 @@ namespace Nasa_ADC
 
         }
 
-        
+
 
         public Tuple<double, double, double> GetEulerAngles(double[] q)
         {
+
+            double sinr_cosp = +2.0 * (q[0] * q[1] + q[2] * q[3]);
+            double cosr_cosp = +1.0 - 2.0 * (q[1] * q[1] + q[2] * q[2]);
+            roll = Math.Atan2(sinr_cosp, cosr_cosp);
+
+            double sinp = +2.0 * (q[0] * q[2] - q[3] * q[1]);
+            if (Math.Abs(sinp) >= 1)
+            {
+                if (sinp > 0)
+                {
+                    pitch = Math.PI / 2; // use 90 degrees if out of range
+                }
+                if (sinp < 0)
+                {
+                    pitch = -Math.PI / 2;
+                }
+            }
+            else
+            {
+                pitch = Math.Asin(sinp);
+            }
+
+            double siny_cosp = +2.0 * (q[0] * q[3] + q[1] * q[2]);
+            double cosy_cosp = +1.0 - 2.0 * (q[2] * q[2] + q[3] * q[3]);
+            yaw = Math.Atan2(siny_cosp, cosy_cosp);
+
+            return Tuple.Create(yaw, pitch, roll);
+
+            /*
             double w2 = q[0] * q[0];
             double x2 = q[1] * q[1];
             double y2 = q[2] * q[2];
             double z2 = q[3] * q[3];
             double unitLength = w2 + x2 + y2 + z2;    // Normalised == 1, otherwise correction divisor.
             double abcd = q[0] * q[1] + q[2] * q[3];
-            double eps = 1e-7;    // TODO: pick from your math lib instead of hardcoding. EPS?
+            double eps = 1e-7; // Epsilon
             double pi = Math.PI;   
             if (abcd > (0.5 - eps) * unitLength)
             {
@@ -131,6 +142,7 @@ namespace Nasa_ADC
 
                 return Tuple.Create(yaw, pitch, roll);
             }
+			*/
         }
 
         public async Task SReceive()

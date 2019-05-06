@@ -6,24 +6,10 @@
         xmlns:local="clr-namespace:Nasa_ADC"
         xmlns:d3="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
-        <Label x:Name="pos1c" Content="Label" HorizontalAlignment="Left" Margin="0,-1,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="pos2c" Content="Label" HorizontalAlignment="Left" Margin="0,24,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="pos3c" Content="Label" HorizontalAlignment="Left" Margin="0,49,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
 
-        <Label x:Name="quat1c" Content="Label" HorizontalAlignment="Left" Margin="0,74,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="quat2c" Content="Label" HorizontalAlignment="Left" Margin="0,99,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="quat3c" Content="Label" HorizontalAlignment="Left" Margin="0,124,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-
-        <Label x:Name="euler1" Content="Label" HorizontalAlignment="Left" Margin="0,174,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="euler2" Content="Label" HorizontalAlignment="Left" Margin="0,199,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-        <Label x:Name="euler3" Content="Label" HorizontalAlignment="Left" Margin="0,224,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
-
-        <Label x:Name="Rot" Content="Normalized Rotation:" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top"/>
         
-        <!-- Engine Flag(Which Engine is firing) -->
-        <Label x:Name="engflag" Content="Label" HorizontalAlignment="Left" Margin="0,254,0,0" VerticalAlignment="Top" Height="30" Width="552"/>
 
         <!-- Left Side of the UI -->
         <!--
