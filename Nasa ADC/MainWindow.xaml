@@ -8,8 +8,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1000">
     <Grid>
+        <Rectangle x:Name="centerv" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="569" Margin="500,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="19"/>
 
-        
+
 
         <!-- Left Side of the UI -->
         <!--

@@ -61,7 +61,7 @@ namespace Nasa_ADC
                 Dispatcher.Invoke((Action)(() =>
                 {
 
-                    
+                                      
                 }));
                 await Task.Delay(1);
             }
