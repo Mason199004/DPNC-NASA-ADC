@@ -55,20 +55,20 @@ namespace Nasa_ADC
            
             while (true)
             {
-                //euler1.Text = "LAS: Yaw = " + ToDegree(GetEulerAngles(quat1).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat1).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat1).Item3);
-                yaw = ToDegree(GetEulerAngles(quat1).Item1);
-                pitch = ToDegree(GetEulerAngles(quat1).Item2);
-                roll = ToDegree(GetEulerAngles(quat1).Item3);
+                //euler2.Text = "Command Module: Yaw = " + ToDegree(GetEulerAngles(quat2).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat2).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat2).Item3);
+                var yawd = ToDegree(GetEulerAngles(quat2).Item1);
+                var pitchd = ToDegree(GetEulerAngles(quat2).Item2);
+                var rolld = ToDegree(GetEulerAngles(quat2).Item3);
 
                 Dispatcher.Invoke((Action)(() =>
                 {
                     //centerv.Margin = new Thickness(490, 0, 0, 0);
                     //133
                     //689
-                    rPoint.Margin = new Thickness(689 + (yaw * 10), 133 + (pitch * 10), 0, 0);
-                    bruh.Text = yaw.ToString();
-                    bruh2.Text = pitch.ToString();
-                    bruh3.Text = roll.ToString();
+                    rPoint.Margin = new Thickness(689 + (yawd), 133 + ((pitchd) * -1), 0, 0);
+                    bruh.Text = yawd.ToString();
+                    bruh2.Text = pitchd.ToString();
+                    bruh3.Text = rolld.ToString();
                     
                 }));
                 await Task.Delay(1);
