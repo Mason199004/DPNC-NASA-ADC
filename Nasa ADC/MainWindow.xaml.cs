@@ -55,6 +55,9 @@ namespace Nasa_ADC
            
             while (true)
             {
+                //euler1.Text = "LAS: Yaw = " + ToDegree(GetEulerAngles(quat1).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat1).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat1).Item3);
+                yaw = GetEulerAngles(quat1).Item1;
+
                 Dispatcher.Invoke((Action)(() =>
                 {
                     //centerv.Margin = new Thickness(490, 0, 0, 0);
