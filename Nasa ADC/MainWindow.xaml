@@ -65,6 +65,9 @@
         <TextBlock HorizontalAlignment="Left" Margin="692,166,0,0" TextWrapping="Wrap" Text="-20" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
         <TextBlock HorizontalAlignment="Left" Margin="692,186,0,0" TextWrapping="Wrap" Text="-30" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
         <TextBlock HorizontalAlignment="Left" Margin="692,206,0,0" TextWrapping="Wrap" Text="-40" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock x:Name="bruh" HorizontalAlignment="Left" Margin="822,54,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="140" FontSize="24"/>
+        <TextBlock x:Name="bruh2" HorizontalAlignment="Left" Margin="822,104,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="140" FontSize="24"/>
+        <TextBlock x:Name="bruh3" HorizontalAlignment="Left" Margin="822,148,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="140" FontSize="24"/>
 
 
         <!-- Left Side of the UI -->

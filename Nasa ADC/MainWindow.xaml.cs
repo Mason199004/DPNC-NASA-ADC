@@ -37,6 +37,7 @@ namespace Nasa_ADC
         static public double[] quat3 = new double[4];
         static public int engine_flag;
         static public int reserved;
+        static public double MET;
         public static byte[] theRawBuffer = new byte[22 * 8]; // 22 parameters, 8 bytes eac
         public MainWindow()
         {
@@ -57,7 +58,13 @@ namespace Nasa_ADC
                 Dispatcher.Invoke((Action)(() =>
                 {
                     //centerv.Margin = new Thickness(490, 0, 0, 0);
-
+                    //133
+                    //689
+                    rPoint.Margin = new Thickness(689 + (yaw), 133 + (pitch), 0, 0);
+                    bruh.Text = yaw.ToString();
+                    bruh2.Text = pitch.ToString();
+                    bruh3.Text = roll.ToString();
+                    
                 }));
                 await Task.Delay(1);
             }
@@ -226,6 +233,7 @@ namespace Nasa_ADC
         public static void unpackBuffer()
         {
             int offset = 0;
+            
             for (int i = 0; i < 3; i++, offset += 8) { pos1[i] = extractDouble(offset); }
             for (int i = 0; i < 3; i++, offset += 8) { pos2[i] = extractDouble(offset); }
             for (int i = 0; i < 3; i++, offset += 8) { pos3[i] = extractDouble(offset); }
