@@ -17,8 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Path = System.Windows.Shapes.Path;
-using InteractiveDataDisplay;
-using System.Reactive.Linq;
+
 
 namespace Nasa_ADC
 {
