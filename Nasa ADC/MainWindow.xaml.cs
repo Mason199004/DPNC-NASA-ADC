@@ -56,14 +56,16 @@ namespace Nasa_ADC
             while (true)
             {
                 //euler1.Text = "LAS: Yaw = " + ToDegree(GetEulerAngles(quat1).Item1) + " Pitch = " + ToDegree(GetEulerAngles(quat1).Item2) + " Roll = " + ToDegree(GetEulerAngles(quat1).Item3);
-                yaw = GetEulerAngles(quat1).Item1;
+                yaw = ToDegree(GetEulerAngles(quat1).Item1);
+                pitch = ToDegree(GetEulerAngles(quat1).Item2);
+                roll = ToDegree(GetEulerAngles(quat1).Item3);
 
                 Dispatcher.Invoke((Action)(() =>
                 {
                     //centerv.Margin = new Thickness(490, 0, 0, 0);
                     //133
                     //689
-                    rPoint.Margin = new Thickness(689 + (yaw), 133 + (pitch), 0, 0);
+                    rPoint.Margin = new Thickness(689 + (yaw * 10), 133 + (pitch * 10), 0, 0);
                     bruh.Text = yaw.ToString();
                     bruh2.Text = pitch.ToString();
                     bruh3.Text = roll.ToString();
@@ -230,6 +232,12 @@ namespace Nasa_ADC
             int value = BitConverter.ToInt32(bytes, 0);
             
             return (value);
+        }
+
+        public double ToDegree(double rad)
+        {
+            double ang = rad * (180 / Math.PI);
+            return ang;
         }
 
         // Sets all the parameters to the values that they have in theRawBuffer buffer
