@@ -68,6 +68,10 @@
         <TextBlock x:Name="bruh" HorizontalAlignment="Left" Margin="822,54,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="140" FontSize="24"/>
         <TextBlock x:Name="bruh2" HorizontalAlignment="Left" Margin="822,104,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="140" FontSize="24"/>
         <TextBlock x:Name="bruh3" HorizontalAlignment="Left" Margin="822,148,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="140" FontSize="24"/>
+        <Rectangle Fill="#FF4F2D0A" HorizontalAlignment="Left" Height="32" Margin="0,258,0,0" Stroke="Black" VerticalAlignment="Top" Width="490"/>
+        <Rectangle x:Name="rHeight" Fill="#FFFF0202" HorizontalAlignment="Left" Height="6" Margin="233,258,0,0" Stroke="Black" VerticalAlignment="Top" Width="6"/>
+        <Rectangle x:Name="rHL" Fill="Black" HorizontalAlignment="Left" Height="6" Margin="244,258,0,0" Stroke="Black" VerticalAlignment="Top" Width="69"/>
+        <TextBlock x:Name="tHeight" HorizontalAlignment="Left" Margin="244,237,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
 
         <!-- Left Side of the UI -->

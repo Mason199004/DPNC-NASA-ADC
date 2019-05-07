@@ -59,7 +59,8 @@ namespace Nasa_ADC
                 var yawd = ToDegree(GetEulerAngles(quat1).Item1);
                 var pitchd = ToDegree(GetEulerAngles(quat1).Item2);
                 var rolld = ToDegree(GetEulerAngles(quat1).Item3);
-
+                //233
+                //258
                 Dispatcher.Invoke((Action)(() =>
                 {
                     
@@ -67,7 +68,10 @@ namespace Nasa_ADC
                     bruh.Text = yawd.ToString();
                     bruh2.Text = pitchd - 90 + "";
                     bruh3.Text = rolld.ToString();
-                    
+                    rHeight.Margin = new Thickness(233, 258 + (-pos1[0] / 500), 0, 0);
+                    rHL.Margin = new Thickness(244, 258 + (-pos1[0] / 500), 0, 0);
+                    tHeight.Margin = new Thickness(244, 237 + (-pos1[0] / 500), 0, 0);
+                    tHeight.Text = pos1[0] + "ft";
                 }));
                 await Task.Delay(1);
             }
