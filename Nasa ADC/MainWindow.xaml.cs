@@ -65,9 +65,9 @@ namespace Nasa_ADC
                     //centerv.Margin = new Thickness(490, 0, 0, 0);
                     //133
                     //689
-                    rPoint.Margin = new Thickness(689 + (yawd), 133 + ((pitchd) * -1), 0, 0);
+                    rPoint.Margin = new Thickness(689 + (yawd / 2), 133 + (((pitchd - 90) / 2) * -1), 0, 0);
                     bruh.Text = yawd.ToString();
-                    bruh2.Text = pitchd.ToString();
+                    bruh2.Text = pitchd - 90 + "";
                     bruh3.Text = rolld.ToString();
                     
                 }));

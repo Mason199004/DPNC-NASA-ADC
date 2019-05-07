@@ -49,22 +49,22 @@
         <Rectangle Fill="Black" HorizontalAlignment="Left" Height="2" Margin="600,224,0,0" Stroke="Black" VerticalAlignment="Top" Width="182"/>
         <Rectangle Fill="Black" HorizontalAlignment="Left" Height="180" Margin="780,44,0,0" Stroke="Black" VerticalAlignment="Top" Width="2"/>
         <Rectangle x:Name="rPoint" Fill="Red" HorizontalAlignment="Left" Height="4" Margin="689,133,0,0" Stroke="Red" VerticalAlignment="Top" Width="4"/>
-        <TextBlock HorizontalAlignment="Left" Margin="671,136,0,0" TextWrapping="Wrap" Text="-10" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="650,136,0,0" TextWrapping="Wrap" Text="-20" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="630,136,0,0" TextWrapping="Wrap" Text="-30" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="610,136,0,0" TextWrapping="Wrap" Text="-40" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="763,136,0,0" TextWrapping="Wrap" Text="40" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="742,136,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="722,136,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="703,136,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="694,116,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="694,96,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="694,76,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="694,56,0,0" TextWrapping="Wrap" Text="40" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6" RenderTransformOrigin="-9.417,-8.469"/>
-        <TextBlock HorizontalAlignment="Left" Margin="692,146,0,0" TextWrapping="Wrap" Text="-10" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="692,166,0,0" TextWrapping="Wrap" Text="-20" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="692,186,0,0" TextWrapping="Wrap" Text="-30" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
-        <TextBlock HorizontalAlignment="Left" Margin="692,206,0,0" TextWrapping="Wrap" Text="-40" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="671,136,0,0" TextWrapping="Wrap" Text="-20" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="650,136,0,0" TextWrapping="Wrap" Text="-80" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="630,136,0,0" TextWrapping="Wrap" Text="-120" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="610,136,0,0" TextWrapping="Wrap" Text="-160" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="762,136,0,0" TextWrapping="Wrap" Text="160" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="742,136,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="722,136,0,0" TextWrapping="Wrap" Text="80" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6" RenderTransformOrigin="-0.458,0.562"/>
+        <TextBlock HorizontalAlignment="Left" Margin="702,136,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="692,116,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="692,96,0,0" TextWrapping="Wrap" Text="80" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="692,76,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="692,56,0,0" TextWrapping="Wrap" Text="160" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6" RenderTransformOrigin="-9.417,-8.469"/>
+        <TextBlock HorizontalAlignment="Left" Margin="692,146,0,0" TextWrapping="Wrap" Text="-20" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="692,166,0,0" TextWrapping="Wrap" Text="-80" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="692,186,0,0" TextWrapping="Wrap" Text="-120" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="692,206,0,0" TextWrapping="Wrap" Text="-160" VerticalAlignment="Top" Foreground="#FF767676" FontSize="6"/>
         <TextBlock x:Name="bruh" HorizontalAlignment="Left" Margin="822,54,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="140" FontSize="24"/>
         <TextBlock x:Name="bruh2" HorizontalAlignment="Left" Margin="822,104,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="140" FontSize="24"/>
         <TextBlock x:Name="bruh3" HorizontalAlignment="Left" Margin="822,148,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="32" Width="140" FontSize="24"/>
